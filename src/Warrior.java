@@ -27,18 +27,30 @@ public class Warrior extends Character {
         this.shieldType = waShield;
     }
 
-    // Un getter du nom du personnage
+    // Getter personnage
     public String getName()  {
         return name;
     }
+    public String getPic()  {
+        return picture;
+    }
+    public int getWaH()  {
+        return health;
+    }
+    public int getWaA()  {
+        return attack;
+    }
+    public String getWaW()  {
+        return weaponType;
+    }
+    public String getWaS()  {
+        return shieldType;
+    }
+
+    // Setter du personnage
     public void setName(String modName)
     {
         name = modName;
-    }
-
-    //Un getter de l'image du personnage
-    public String getPic()  {
-        return picture;
     }
 }
 

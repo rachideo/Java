@@ -12,11 +12,10 @@ public class Character {
         picture = inputPicture;
     }
 
-    // Un getter du nom du personnage
+    // Getter personnage
     public String getName()  {
         return name;
     }
-    //Un getter de l'image du personnage
     public String getPic()  {
         return picture;
     }
@@ -25,4 +24,5 @@ public class Character {
     {
         name = modName;
     }
+
 }
