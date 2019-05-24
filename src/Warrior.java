@@ -1,45 +1,40 @@
 public class Warrior extends Character {
 
-    private int characterType = 1;
-    private int health;
-    private int attack;
     private String weaponType;
     private String shieldType;
 
     // Constructeur par défaut
     public Warrior () {
         super();
-        this.characterType = 1;
+        super.setCharacterType(1);
     }
 
     // Constructeur avec petits paramètres
-    public Warrior(String waName, String waPic) {
-        super(waName, waPic);
+    public Warrior(String waName, String waPic, int waHealth, int waAttack) {
+        super(waName, waPic, waHealth, waAttack);
+        super.setCharacterType(1);
+
 
     }
 
     // Constructeur avec paramètres
     public Warrior(String waName, String waPic, int waHealth, int waAttack, String waWeapon, String waShield) {
-        super(waName, waPic);
-        this.health = waHealth;
-        this.attack = waAttack;
+        super(waName, waPic, waHealth, waAttack);
         this.weaponType = waWeapon;
         this.shieldType = waShield;
+        super.setCharacterType(1);
     }
 
     // Getter personnage
+
     public String getName()  {
         return name;
     }
     public String getPic()  {
         return picture;
     }
-    public int getWaH()  {
-        return health;
-    }
-    public int getWaA()  {
-        return attack;
-    }
+
+
     public String getWaW()  {
         return weaponType;
     }
@@ -47,10 +42,23 @@ public class Warrior extends Character {
         return shieldType;
     }
 
-    // Setter du personnage
+    // Setter personnage
     public void setName(String modName)
     {
         name = modName;
+    }
+    public void setPic(String modPic)
+    {
+        picture = modPic;
+    }
+
+    public void setWeapon(String modWeaponType)
+    {
+        weaponType = modWeaponType;
+    }
+    public void setShield(String modShieldType)
+    {
+        shieldType = modShieldType;
     }
 }
 

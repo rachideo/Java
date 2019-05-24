@@ -1,6 +1,6 @@
 import java.util.concurrent.TimeUnit;
 
-public class Intro extends DongeonAndDragon{
+public class Intro extends RedKeepandDrogo{
     public static void intro() throws InterruptedException {
         System.out.println("                                                                                ");
         System.out.println("                                                                                ");

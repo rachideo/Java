@@ -4,15 +4,16 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 
-public class DongeonAndDragon {
+public class RedKeepandDrogo {
 
     public static void main(String[] args) throws InterruptedException {
 
         Intro.intro();
-        CreateChar.createchar();
-
+        Game c = new Game();
+        c.createChar();
+        Game m = new Game();
+        m.modifyChar();
 
 
     }
 }
-
