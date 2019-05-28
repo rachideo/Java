@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Warrior extends Character {
 
     private String weaponType;
@@ -10,55 +12,49 @@ public class Warrior extends Character {
     }
 
     // Constructeur avec petits paramètres
-    public Warrior(String waName, String waPic, int waHealth, int waAttack) {
-        super(waName, waPic, waHealth, waAttack);
+    public Warrior(String name, String picture, int health, int attack) {
+        super(name, picture, health, attack);
         super.setCharacterType(1);
-
-
     }
 
     // Constructeur avec paramètres
-    public Warrior(String waName, String waPic, int waHealth, int waAttack, String waWeapon, String waShield) {
-        super(waName, waPic, waHealth, waAttack);
-        this.weaponType = waWeapon;
-        this.shieldType = waShield;
+    public Warrior(String name, String picture, int health, int attack, String weapon, String shield) {
+        super(name, picture, health, attack);
+        this.weaponType = weapon;
+        this.shieldType = shield;
         super.setCharacterType(1);
     }
 
     // Getter personnage
-
-    public String getName()  {
-        return name;
-    }
-    public String getPic()  {
-        return picture;
-    }
-
-
-    public String getWaW()  {
+    public String getOffensiveTools()  {
         return weaponType;
     }
-    public String getWaS()  {
+
+    public String getDefensiveTools()  {
         return shieldType;
     }
 
     // Setter personnage
-    public void setName(String modName)
-    {
-        name = modName;
+    public void setOffensiveTools(String modWeaponType){
+        this.weaponType = modWeaponType;
     }
-    public void setPic(String modPic)
-    {
-        picture = modPic;
+    public void setDefensiveTools(String modShieldType){
+        this.shieldType = modShieldType;
     }
 
-    public void setWeapon(String modWeaponType)
-    {
-        weaponType = modWeaponType;
-    }
-    public void setShield(String modShieldType)
-    {
-        shieldType = modShieldType;
+    // Méthodes
+    public void getUserInputInfo(){
+        Scanner sc = new Scanner(System.in);
+        super.getUserInputInfo();
+        System.out.println("Quel est le niveau de vie de votre personnage entre 5 et 10 inclus ?");
+        this.health = sc.nextInt();
+        System.out.println("Quel est le niveau de force d'attaque de votre personnage entre 5 et 10 inclus ?");
+        this.attack = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Quel arme utilise votre personnage ?");
+        this.weaponType = sc.nextLine();
+        System.out.println("Quel bouclier utilise votre personnage ?");
+        this.shieldType = sc.nextLine();
     }
 }
 

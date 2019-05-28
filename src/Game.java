@@ -1,17 +1,17 @@
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
-    public class Game extends RedKeepandDrogo {
+public class Game extends RedKeepandDrogo {
 
-        private char yes = 'O';
-        private char no = 'N';
-        private char warrior = 'G';
-        private char wizard = 'M';
+        Character newCharacter;
+        private int a;
         private char answerCreate;
         private char whichCreate;
         private char answerModify;
         private int whichModify;
         private int newCharType;
+        private String[] descCharacter = new String[3];
+        private String[] descWarrior = {"guerrier", "Arme", "Bouclier"};
+        private String[] descWizard = {"magicien", "Sort", "Philtre"};
 
         private Scanner sc = new Scanner(System.in);
 
@@ -24,15 +24,15 @@ import java.util.concurrent.TimeUnit;
                 System.out.println("Voulez vous créer un personnage ? O/N");
                 answerCreate = sc.next().charAt(0);
                 sc.nextLine();
-                if (answerCreate == yes) {
+                if (answerCreate == 'O') {
                     System.out.println("Très bien, veuillez répondre aux prochaines questions.\n");
-                } else if (answerCreate == no) {
+                } else if (answerCreate == 'N') {
                     System.out.println("Tant pis pour vous :-(");
                 } else {
                     System.out.println("Je n'ai pas compris :s");
                 }
             }
-            while (answerCreate != yes);
+            while (answerCreate != 'O');
 
             do {
                 System.out.println("Quel type de personnage voulez vous ? Une guerrier ? Ou un magicien ? G/M");
@@ -40,106 +40,95 @@ import java.util.concurrent.TimeUnit;
                 sc.nextLine();
                 createPerso(answerCreate);
             }
-            while (answerCreate!=warrior && answerCreate!=wizard);
+            while (answerCreate!='G' && answerCreate!='M');
+        }
 
+        public void createPerso(char whichCreate) throws InterruptedException
+        {
+            if (whichCreate=='G') {
+                newCharacter = new Warrior();
+                newCharacter.getUserInputInfo();
+                descCharacter = descWarrior.clone();
+
+
+            } else if (whichCreate=='M'){
+                newCharacter = new Wizard();
+                newCharacter.getUserInputInfo();
+                descCharacter = descWizard.clone();
+
+            } else {
+                System.out.println("Je n'ai pas compris :s\n");
+            }
+
+            printChar();
         }
 
 
-
         public void modifyChar() throws InterruptedException {
-        System.out.println(newCharType);
-
+            newCharType = newCharacter.getCharacterType();
             do {
                 System.out.println("Voulez vous changer des caractéristiques de votre personnage ? O/N");
                 answerModify = sc.next().charAt(0);
                 sc.nextLine();
-                if (answerModify == yes) {
-
-                    if (newCharType == 1) {
-                        System.out.println("Que voulez vous changer ?\n" +
-                                "1 : Nom;  " +
-                                "2 : Image;  " +
-                                "3 : Niveau de vie;  " +
-                                "4 : Force d'attaque;  " +
-                                "5 : Arme;  " +
-                                "6 : Bouclier;  ");
-
-                        whichModify = sc.nextInt();
-                        sc.nextLine();
-                    } else {
-                        System.out.println("Que voulez vous changer ?\n" +
-                                "1 : Nom" +
-                                "2 : Image" +
-                                "3 : Niveau de vie" +
-                                "4 : Force d'attaque" +
-                                "5 : Sort" +
-                                "6 : Philtre");
-                        whichModify = sc.nextInt();
-                        sc.nextLine();
-
+                if (answerModify == 'O') {
+                    System.out.println("Que voulez vous changer ?\n"+
+                        "1 : Nom;  "+"2 : Image;  "+"3 : Niveau de vie;  "+"4 : Force d'attaque;  "+"5 : Arme;  "+"6 : Bouclier;  ");
+                    whichModify = sc.nextInt();
+                    sc.nextLine();
+                    switch(whichModify) {
+                        case 1:
+                            String setNewName = saisie("Entrez le nouveau nom : ");
+                            newCharacter.setName(setNewName);
+                            break;
+                        case 2:
+                            String setNewPic = saisie("Entrez la nouvelle image : ");
+                            newCharacter.setPic(setNewPic);
+                            break;
+                        case 3:
+                            int setNewHealth = Integer.parseInt(saisie("Entrez le nouveau niveau de vie : "));
+                            newCharacter.setHealth(setNewHealth);
+                            break;
+                        case 4:
+                            int setNewAttack = Integer.parseInt(saisie("Entrez la nouvelle force d'attaque : "));
+                            newCharacter.setAttack(setNewAttack);
+                            break;
+                        case 5:
+                            String setNewOffensive = saisie("Entrez le/la nouveau/elle "+descCharacter[1].toLowerCase()+" :");
+                            newCharacter.setOffensiveTools(setNewOffensive);
+                            break;
+                        case 6:
+                            String setNewDefensive = saisie("Entrez le nouveau "+descCharacter[2].toLowerCase()+" :");
+                            newCharacter.setDefensiveTools(setNewDefensive);
+                            break;
+                        default:
+                            System.out.println("Je n'ai pas compris :s");
                     }
-
-                } else if (answerModify == no) {
+                    printChar();
+                } else if (answerModify == 'N') {
                     System.out.println("Tant pis pour vous :-(");
                 } else {
                     System.out.println("Je n'ai pas compris :s");
                 }
             }
-            while (answerModify != yes);
-
-
+            while (answerModify != 'O');
         }
 
-    public void createPerso(char whichCreate) throws InterruptedException
-    {
-        String charName = saisie("Quel prénom voulez vous donner à votre personnage ?");
-        String charPic = saisie("Quel est le nom de votre image ?");
 
-        if (whichCreate==warrior) {
-            int waHealth = Integer.parseInt(saisie("Quel est le niveau de vie de votre personnage entre 5 et 10 inclus ?"));
-            int waAttack = Integer.parseInt(saisie("Quel est le niveau de force d'attaque de votre personnage entre 5 et 10 inclus ?"));
-            String waWeapon = saisie("Quel arme utilise votre personnage ?");
-            String waShield = saisie("Quel bouclier utilise votre personnage ?");
-
-            Warrior newcharacter = new Warrior (charName, charPic, waHealth, waAttack, waWeapon, waShield);
-
-            System.out.println("\n Résumé de votre personnage de type guerrier :");
-            System.out.println( "Nom : " +newcharacter.getName()+"\n"+
-                    "Image : " +newcharacter.getPic()+"\n"+
-                    "Niveau de vie : "+newcharacter.getHealth()+"\n"+
-                    "Force d'attaque : "+newcharacter.getAttack()+"\n"+
-                    "Arme : "+newcharacter.getWaW()+"\n"+
-                    "Bouclier : "+newcharacter.getWaS()+"\n");
-            newCharType = newcharacter.getCharacterType();
-
-        } else if (whichCreate==wizard){
-            int wiHealth = Integer.parseInt(saisie("Quel est le niveau de vie de votre personnage entre 3 et 16 inclus ?"));
-            int wiAttack = Integer.parseInt(saisie("Quel est le niveau de force d'attaque de votre personnage entre 8 et 15 inclus ?"));
-            String wiSpell = saisie("Quel sort utilise votre personnage ?");
-            String wiPhiltre = saisie("Quel philtre utilise votre personnage ?");
-
-            Wizard newcharacter = new Wizard (charName, charPic, wiHealth, wiAttack, wiSpell, wiPhiltre);
-
-            System.out.println("\n Résumé de votre personnage de type magicien :");
-            System.out.println( "Nom : " +newcharacter.getName()+"\n"+
-                    "Image : " +newcharacter.getPic()+"\n"+
-                    "Niveau de vie : "+newcharacter.getHealth()+"\n"+
-                    "Force d'attaque : "+newcharacter.getAttack()+"\n"+
-                    "Sort : "+newcharacter.getWiS()+"\n"+
-                    "Philtre : "+newcharacter.getWiP()+"\n");
-            newCharType = newcharacter.getCharacterType();
-
-        } else {
-            System.out.println("Je n'ai pas compris :s\n");
+        private String saisie(String lib) throws InterruptedException
+        {
+            System.out.println(lib);
+            String texte = sc.nextLine();
+            return texte;
         }
-    }
 
-
-    private String saisie(String lib) throws InterruptedException
-    {
-        System.out.println(lib);
-        String texte = sc.nextLine();
-        return texte;
-    }
+        private void printChar() {
+            System.out.println("Résumé de votre personnage de type "+descCharacter[0]+" :");
+            System.out.println( "  Nom : " + newCharacter.getName()+"\n"+
+                    "  Image : " + newCharacter.getPic()+"\n"+
+                    "  Niveau de vie : "+ newCharacter.getHealth()+"\n"+
+                    "  Force d'attaque : "+ newCharacter.getAttack()+"\n"+
+                    "  "+descCharacter[1]+" : "+ newCharacter.getOffensiveTools()+"\n"+
+                    "  "+descCharacter[2]+" : "+ newCharacter.getDefensiveTools()+"\n");
+        }
 
 }

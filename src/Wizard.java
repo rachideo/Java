@@ -1,61 +1,62 @@
-public class Wizard extends Character{
+import java.util.Scanner;
 
+public class Wizard extends Character{
 
     private String spellType;
     private String philtreType;
 
     // Constructeur par défaut
     public Wizard () {
+        super();
         super.setCharacterType(2);
     }
 
     // Constructeur avec petits paramètres
-    public Wizard(String wiName, String wiPic, int wiHealth, int wiAttack) {
+    public Wizard(String name, String picture, int health, int attack) {
+        super(name, picture, health, attack);
         super.setCharacterType(2);
     }
 
     // Constructeur avec paramètres
-    public Wizard(String wiName, String wiPic, int wiHealth, int wiAttack, String wiSpell, String wiPhiltre) {
-        super(wiName, wiPic, wiHealth, wiAttack);
-        this.spellType = wiSpell;
-        this.philtreType = wiPhiltre;
+    public Wizard(String name, String picture, int health, int attack, String spell, String philtre) {
+        super(name, picture, health, attack);
+        this.spellType = spell;
+        this.philtreType = philtre;
         super.setCharacterType(2);
     }
 
     // Getter personnage
-
-    public String getName()  {
-        return name;
-    }
-    public String getPic()  {
-        return picture;
-    }
-
-    public String getWiS()  {
+    public String getOffensiveTools()  {
         return spellType;
     }
-    public String getWiP()  {
+
+    public String getDefensiveTools()  {
         return philtreType;
     }
 
     // Setter personnage
-    public void setName(String modName)
+    public void setOffensiveTools(String modSpellType)
     {
-        name = modName;
+        this.spellType = modSpellType;
     }
-    public void setPic(String modPic)
+    public void setDefensiveTools(String modPhiltreType)
     {
-        picture = modPic;
-    }
-
-    public void setSpell(String modSpellType)
-    {
-        spellType = modSpellType;
-    }
-    public void setPhiltre(String modPhiltreType)
-    {
-        philtreType = modPhiltreType;
+        this.philtreType = modPhiltreType;
     }
 
+    // Méthodes
+    public void getUserInputInfo(){
+        Scanner sc = new Scanner(System.in);
+        super.getUserInputInfo();
+        System.out.println("Quel est le niveau de vie de votre personnage entre 3 et 6 inclus ?");
+        this.health = sc.nextInt();
+        System.out.println("Quel est le niveau de force d'attaque de votre personnage entre 8 et 15 inclus ?");
+        this.attack = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Quel sort utilise votre personnage ?");
+        this.spellType = sc.nextLine();
+        System.out.println("Quel philtre utilise votre personnage ?");
+        this.philtreType = sc.nextLine();
+    }
 }
 

@@ -1,7 +1,6 @@
-import javax.sound.midi.Soundbank;
 import java.util.Objects;
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
+        import java.util.Scanner;
+        import java.util.concurrent.TimeUnit;
 
 
 public class RedKeepandDrogo {
@@ -11,9 +10,9 @@ public class RedKeepandDrogo {
         Intro.intro();
         Game c = new Game();
         c.createChar();
-        Game m = new Game();
-        m.modifyChar();
+        c.modifyChar();
 
 
     }
 }
+
