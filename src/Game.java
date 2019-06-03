@@ -3,12 +3,9 @@ import java.util.Scanner;
 public class Game extends RedKeepandDrogo {
 
         Character newCharacter;
-        private int a;
         private char answerCreate;
-        private char whichCreate;
         private char answerModify;
         private int whichModify;
-        private int newCharType;
         private String[] descCharacter = new String[3];
         private String[] descWarrior = {"guerrier", "Arme", "Bouclier"};
         private String[] descWizard = {"magicien", "Sort", "Philtre"};
@@ -18,8 +15,7 @@ public class Game extends RedKeepandDrogo {
         public Game() {
         }
 
-        public void createChar() throws InterruptedException {
-
+        public void createChar() {
             do {
                 System.out.println("Voulez vous créer un personnage ? O/N");
                 answerCreate = sc.next().charAt(0);
@@ -43,19 +39,15 @@ public class Game extends RedKeepandDrogo {
             while (answerCreate!='G' && answerCreate!='M');
         }
 
-        public void createPerso(char whichCreate) throws InterruptedException
-        {
+        public void createPerso(char whichCreate) {
             if (whichCreate=='G') {
                 newCharacter = new Warrior();
                 newCharacter.getUserInputInfo();
                 descCharacter = descWarrior.clone();
-
-
             } else if (whichCreate=='M'){
                 newCharacter = new Wizard();
                 newCharacter.getUserInputInfo();
                 descCharacter = descWizard.clone();
-
             } else {
                 System.out.println("Je n'ai pas compris :s\n");
             }
@@ -64,8 +56,7 @@ public class Game extends RedKeepandDrogo {
         }
 
 
-        public void modifyChar() throws InterruptedException {
-            newCharType = newCharacter.getCharacterType();
+        public void modifyChar() {
             do {
                 System.out.println("Voulez vous changer des caractéristiques de votre personnage ? O/N");
                 answerModify = sc.next().charAt(0);
@@ -114,8 +105,7 @@ public class Game extends RedKeepandDrogo {
         }
 
 
-        private String saisie(String lib) throws InterruptedException
-        {
+        private String saisie(String lib) {
             System.out.println(lib);
             String texte = sc.nextLine();
             return texte;

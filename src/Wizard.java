@@ -20,7 +20,7 @@ public class Wizard extends Character{
     // Constructeur avec paramètres
     public Wizard(String name, String picture, int health, int attack, String spell, String philtre) {
         super(name, picture, health, attack);
-        this.spellType = spell;
+        this.spellType = String.valueOf(new Spell(spell));
         this.philtreType = philtre;
         super.setCharacterType(2);
     }
@@ -35,12 +35,10 @@ public class Wizard extends Character{
     }
 
     // Setter personnage
-    public void setOffensiveTools(String modSpellType)
-    {
+    public void setOffensiveTools(String modSpellType) {
         this.spellType = modSpellType;
     }
-    public void setDefensiveTools(String modPhiltreType)
-    {
+    public void setDefensiveTools(String modPhiltreType) {
         this.philtreType = modPhiltreType;
     }
 

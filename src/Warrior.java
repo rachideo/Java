@@ -20,7 +20,7 @@ public class Warrior extends Character {
     // Constructeur avec paramètres
     public Warrior(String name, String picture, int health, int attack, String weapon, String shield) {
         super(name, picture, health, attack);
-        this.weaponType = weapon;
+        this.weaponType = String.valueOf(new Weapon(weapon));
         this.shieldType = shield;
         super.setCharacterType(1);
     }
