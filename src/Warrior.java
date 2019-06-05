@@ -46,15 +46,25 @@ public class Warrior extends Character {
     public void getUserInputInfo(){
         Scanner sc = new Scanner(System.in);
         super.getUserInputInfo();
-        System.out.println("Quel est le niveau de vie de votre personnage entre 5 et 10 inclus ?");
+        System.out.println("\n - Quel est le niveau de vie de votre personnage entre 5 et 10 inclus ?");
         this.health = sc.nextInt();
-        System.out.println("Quel est le niveau de force d'attaque de votre personnage entre 5 et 10 inclus ?");
+        System.out.println("\n - Quel est le niveau de force d'attaque de votre personnage entre 5 et 10 inclus ?");
         this.attack = sc.nextInt();
         sc.nextLine();
-        System.out.println("Quel arme utilise votre personnage ?");
+        System.out.println("\n - Quel arme utilise votre personnage ?");
         this.weaponType = sc.nextLine();
-        System.out.println("Quel bouclier utilise votre personnage ?");
+        System.out.println("\n - Quel bouclier utilise votre personnage ?");
         this.shieldType = sc.nextLine();
+    }
+
+    public String toString() {
+        return  "\n Résumé de votre personnage guerrier : \n"+
+                "  Nom : " +this.name+"\n"+
+                "  Image : " +this.picture+"\n"+
+                "  Niveau de vie : "+this.health+"\n"+
+                "  Force d'attaque : "+this.attack+"\n"+
+                "  Arme : "+this.weaponType+"\n"+
+                "  Bouclier : "+this.shieldType+"\n";
     }
 }
 

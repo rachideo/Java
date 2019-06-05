@@ -67,10 +67,14 @@ public class Character {
 
     public void getUserInputInfo(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Quel prénom voulez vous donner à votre personnage ?");
+        System.out.println("\n - Quel prénom voulez vous donner à votre personnage ?");
         this.name = sc.nextLine();
-        System.out.println("Quel est le nom de votre image ?");
+        System.out.println("\n - Quel est le nom de votre image ?");
         this.picture = sc.nextLine();
     }
 
+    public String toString()
+    {
+        return "";
+    }
 }

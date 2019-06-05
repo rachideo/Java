@@ -9,7 +9,7 @@ public class RedKeepandDrogo {
 
         Intro.intro();
         Game c = new Game();
-        c.createChar();
+        c.menu();
         c.modifyChar();
 
 
