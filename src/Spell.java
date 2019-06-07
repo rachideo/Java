@@ -1,15 +1,20 @@
 public class Spell {
-    // Attributs
+    /** Attributs */
     private String nameSpell;
 
-    // Constructeur
+    /** Constructeur */
     Spell() {}
 
+    /** Constructeur avec paramètre
+     * @param pNameSpell correspond au nom du sort
+     */
     Spell (String pNameSpell) {
         this.nameSpell = pNameSpell;
     }
 
-    // Méthodes
+    /** Méthodes Getter getSpellName
+     * @return retoune le nom du sort
+     */
     public String getSpellName()  {
         return nameSpell;
     }

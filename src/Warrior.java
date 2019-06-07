@@ -1,23 +1,33 @@
 import java.util.Scanner;
 
+/** Cette classe Warrior définit les personnages Character de type Warrior */
 public class Warrior extends Character {
 
+    /** Déclaration des attributs */
     private String weaponType;
     private String shieldType;
 
-    // Constructeur par défaut
+    /** Constructeur par défaut */
     public Warrior () {
         super();
         super.setCharacterType(1);
     }
 
-    // Constructeur avec petits paramètres
+    /** Constructeur avec petits paramètres
+     * @param name correspond au nom du personnage
+     * @param picture correspond au nom de l'image du personngae
+     * @param health correspond au niveau de santé du personnage
+     * @param attack correspond au niveau d'atteque du personnage
+     */
     public Warrior(String name, String picture, int health, int attack) {
         super(name, picture, health, attack);
         super.setCharacterType(1);
     }
 
-    // Constructeur avec paramètres
+    /** Constructeur avec paramètres
+     * @param weapon correspond à l'arme du personnage
+     * @param shield correspond au bouclier du personnage
+     */
     public Warrior(String name, String picture, int health, int attack, String weapon, String shield) {
         super(name, picture, health, attack);
         this.weaponType = String.valueOf(new Weapon(weapon));
@@ -25,24 +35,34 @@ public class Warrior extends Character {
         super.setCharacterType(1);
     }
 
-    // Getter personnage
+    /** Méthodes Getter getOffensiveTools
+     * @return l'attribut weaponType correspondant à l'arme du personnage
+     */
     public String getOffensiveTools()  {
         return weaponType;
     }
 
+    /** Méthodes Getter getOffensiveTools
+     * @return l'attribut shieldType correspondant au bouclier du personnage
+     */
     public String getDefensiveTools()  {
         return shieldType;
     }
 
-    // Setter personnage
+    /** Méthodes Setter personnage
+     * @param modWeaponType correspond à l'attribut à modifier
+     */
     public void setOffensiveTools(String modWeaponType){
         this.weaponType = modWeaponType;
     }
+    /** Méthodes Setter personnage
+     * @param modShieldType correspond à l'attribut à modifier
+     */
     public void setDefensiveTools(String modShieldType){
         this.shieldType = modShieldType;
     }
 
-    // Méthodes
+    /** Méthodes getUserInputInfo() qui lance un questionnaire spécifique aux objets Warrior */
     public void getUserInputInfo(){
         Scanner sc = new Scanner(System.in);
         super.getUserInputInfo();
@@ -57,6 +77,9 @@ public class Warrior extends Character {
         this.shieldType = sc.nextLine();
     }
 
+    /** Méthode toString qui permet d'afficher la description d'un objet de type Warrior
+     * @return retourne un texte avec les attributs de l'objet
+     */
     public String toString() {
         return  "\n Résumé de votre personnage guerrier : \n"+
                 "  Nom : " +this.name+"\n"+
@@ -66,5 +89,6 @@ public class Warrior extends Character {
                 "  Arme : "+this.weaponType+"\n"+
                 "  Bouclier : "+this.shieldType+"\n";
     }
+
 }
 

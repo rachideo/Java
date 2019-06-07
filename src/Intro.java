@@ -1,6 +1,13 @@
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Cette classe affiche une animation d'introduction
+ */
 public class Intro extends RedKeepandDrogo{
+    /**
+     * Cette m&eacute;thode affiche une animation d'introduction
+     * @throws InterruptedException permet l'utilisation de TimeUnit
+     */
     public static void intro() throws InterruptedException {
         System.out.println("                                                                                ");
         System.out.println("                                                                                ");
