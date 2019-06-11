@@ -1,5 +1,9 @@
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.sql.*;
+
 
 /** Cette classe Game contient les principales méthodes du jeu */
 public class Game extends RedKeepandDrogo {
@@ -30,6 +34,37 @@ public class Game extends RedKeepandDrogo {
         while (answerCreate!='G' && answerCreate!='M');
     }
 
+    /** Méthode connection BDD affiche*/
+    public void getHeroes2() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("Driver O.K.");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/exojavahero", "root", "");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from hero");
+            System.out.println("\n*****************************************************************************************************************************************************");
+            for(int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                System.out.print("\t" + rs.getMetaData().getColumnName(i) + "\t\t|");
+            }
+            System.out.println("\n*****************************************************************************************************************************************************");
+            while(rs.next()){
+                System.out.print("\t" + rs.getInt("id") + "\t \t|");
+                System.out.print("\t" + rs.getInt("type") + "\t \t \t|");
+                System.out.print("\t" + rs.getString("name").substring(0,6) + "... \t|");
+                System.out.print("\t" + rs.getString("picture").substring(0,6) + "... \t|");
+                System.out.print("\t" + rs.getInt("lvl_health") + "\t\t\t\t|");
+                System.out.print("\t" + rs.getInt("lvl_force") + "\t\t\t\t|");
+                System.out.print("\t" + rs.getString("offensive_tool").substring(0,6) + "... \t\t\t|");
+                System.out.print("\t" + rs.getString("defensive_tool").substring(0,6) + "... \t\t\t|");
+                System.out.println("\n-----------------------------------------------------------------------------------------------------------------------------------------------------");
+            }
+            System.out.println("\n");
+            rs.close();
+            con.close();
+        } catch (Exception e) { System.out.println(e); }
+    }
+        
+
     /** Méthode createPerso qui va créer le personnage
      * @param whichCreate correspond à la réponse de l'utilisateur
      * */
@@ -47,15 +82,26 @@ public class Game extends RedKeepandDrogo {
         } else {
             System.out.println("\n Je n'ai pas compris :s");
         }
+
         System.out.println(newCharacter);
     }
 
-    /** Méthode printList qui va afficher la liste des objets personnage crées */
-    public void printList() {
+    /** Méthode getHeroes qui va afficher la liste des objets personnage crées */
+    public void getHeroes() {
         for (int i=0; i<listCharacter.size(); i++) {
-            System.out.println(listCharacter.get(i));
+            System.out.println("Personnage n°"+(i+1)+" : \n"+listCharacter.get(i));
             System.out.println("\n");
         }
+    }
+
+    /** Méthode getHero qui va afficher un objets personnage crée en particulier */
+    public void getHero() {
+        System.out.println("\n Quel est le numéro du personnage que vous voulez afficher ?");
+        int numberHero = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Personnage n°"+numberHero+" : \n"+listCharacter.get(numberHero - 1));
+        System.out.println("\n");
+
     }
 
     /** Méthode modifyChar qui va permettre de modifier les caractéristiques des objets personnage crées */
@@ -129,7 +175,9 @@ public class Game extends RedKeepandDrogo {
                 "                             |                                        |\n" +
                 "                             |  3 * AFFICHER LISTE DES PERSONNAGES    |\n" +
                 "                             |                                        |\n" +
-                "                             |  4 * QUITTER                           |\n" +
+                "                             |  4 * AFFICHER INFO PERSONNAGE          |\n" +
+                "                             |                                        |\n" +
+                "                             |  5 * QUITTER                           |\n" +
                 "                             |                                        |\n" +
                 "                             +----------------------------------------+\n"+
                 "\n");
@@ -145,14 +193,17 @@ public class Game extends RedKeepandDrogo {
                 modifyChar();
                 menu();
             } else if (inputMenu == 3) {
-                printList();
+                getHeroes2();
                 menu();
             } else if (inputMenu == 4) {
+                getHero();
+                menu();
+            } else if (inputMenu == 5) {
                 System.exit(0);
             } else {
                 System.out.println("Mauvaise réponse ! Réssayez !");
             }
-        } while (inputMenu!=1 && inputMenu!=2 && inputMenu!=3);
+        } while (inputMenu!=1 && inputMenu!=2 && inputMenu!=3 && inputMenu!=4 && inputMenu!=5);
     }
 
 }
